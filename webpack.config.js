@@ -18,7 +18,9 @@ module.exports = (env, argv) => {
   devServer: {
     static: path.join(__dirname, "public"),
     port: 3000,
-    historyApiFallback: true,
+    historyApiFallback: {
+      index: '/casa-project-worcester/'
+    },
     open: true,
     hot: true,
   },

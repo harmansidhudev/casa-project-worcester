@@ -22,12 +22,13 @@ import FindCASA from "./FindCASA";
 
 export default function App() {
   return (
-    <Router>
+    <Router basename="/casa-project-worcester">
       <div className="min-h-screen flex flex-col">
         <Header />
         <main className="flex-grow">
           <Routes>
             <Route path="/" element={<Home />} />
+            <Route path="/home" element={<Home />} />
             <Route path="/about" element={<About />} />
             <Route path="/team" element={<Team />} />
             <Route path="/board" element={<Board />} />
