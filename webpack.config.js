@@ -1,14 +1,18 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 
-module.exports = {
-  entry: "./src/index.js",
-  output: {
-    path: path.resolve(__dirname, "dist"),
-    filename: "bundle.js",
-    clean: true,
-    publicPath: "/",
-  },
+module.exports = (env, argv) => {
+  const isProduction = argv.mode === "production";
+  const homepage = isProduction ? "https://harmansidhudev.github.io/casa-project-worcester" : "/";
+  
+  return {
+    entry: "./src/index.js",
+    output: {
+      path: path.resolve(__dirname, "dist"),
+      filename: "bundle.js",
+      clean: true,
+      publicPath: homepage,
+    },
   mode: "development",
   devtool: "source-map",
   devServer: {
@@ -39,4 +43,5 @@ module.exports = {
       template: "./public/index.html",
     }),
   ],
+  };
 }; 
