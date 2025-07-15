@@ -21,8 +21,12 @@ import Careers from "./Careers";
 import FindCASA from "./FindCASA";
 
 export default function App() {
+  // Determine basename based on environment
+  // Use "/casa-project-worcester" for GitHub Pages, "/" for local development
+  const basename = process.env.NODE_ENV === 'production' ? '/casa-project-worcester' : '/';
+  
   return (
-    <Router basename="/casa-project-worcester">
+    <Router basename={basename}>
       <div className="min-h-screen flex flex-col">
         <Header />
         <main className="flex-grow">

@@ -1,5 +1,6 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const webpack = require("webpack");
 
 module.exports = (env, argv) => {
   const isProduction = argv.mode === "production";
@@ -13,14 +14,12 @@ module.exports = (env, argv) => {
       clean: true,
       publicPath: homepage,
     },
-  mode: "development",
+  mode: isProduction ? "production" : "development",
   devtool: "source-map",
   devServer: {
     static: path.join(__dirname, "public"),
     port: 3000,
-    historyApiFallback: {
-      index: '/casa-project-worcester/'
-    },
+    historyApiFallback: true,
     open: true,
     hot: true,
   },
@@ -43,6 +42,9 @@ module.exports = (env, argv) => {
   plugins: [
     new HtmlWebpackPlugin({
       template: "./public/index.html",
+    }),
+    new webpack.DefinePlugin({
+      'process.env.NODE_ENV': JSON.stringify(isProduction ? 'production' : 'development'),
     }),
   ],
   };
